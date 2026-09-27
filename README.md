@@ -176,3 +176,4 @@ All endpoints except sign-in, registration, and health checks require a Bearer t
 - Several older MongoDB/PostgreSQL files remain in the repository but are not part of the active runtime.
 - This application is for education and demonstration only, not financial advice or brokerage use.
  
+ 
