@@ -175,3 +175,4 @@ All endpoints except sign-in, registration, and health checks require a Bearer t
 - The frontend production bundle currently produces a Vite chunk-size warning and would benefit from route-level code splitting.
 - Several older MongoDB/PostgreSQL files remain in the repository but are not part of the active runtime.
 - This application is for education and demonstration only, not financial advice or brokerage use.
+ 
