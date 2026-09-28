@@ -18,3 +18,4 @@ Thumbs.db
 npm-debug.log*
 commit_history.txt
 commit_files.ps1
+.env
