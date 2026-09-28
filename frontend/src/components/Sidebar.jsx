@@ -24,7 +24,12 @@ const userItems = [
   ["orders", "Orders", "/orders"], ["backtest", "Backtest", "/backtest"], ["market", "Markets", "/market"],
   ["settings", "Settings", "/settings"],
 ];
-const adminItems = [["overview", "Overview", "/admin"], ["users", "Users", "/admin/users"], ["orders", "Trades", "/admin/trades"]];
+const adminItems = [
+  ["market", "Trade Mode", "/dashboard"], 
+  ["overview", "Overview", "/admin"], 
+  ["users", "Users", "/admin/users"], 
+  ["orders", "Trades", "/admin/trades"]
+];
 
 export default function Sidebar() {
   const { user } = useAuth();
@@ -37,6 +42,6 @@ export default function Sidebar() {
       const active = location.pathname === path;
       return <button key={path} className={`bottom-nav-item${active ? " active" : ""}`} onClick={() => navigate(path)} aria-label={label} aria-current={active ? "page" : undefined}><Icon name={icon}/><span>{label}</span></button>;
     })}</div>
-    {user?.role !== "admin" && <button className="bottom-nav-profile" onClick={() => navigate("/settings")} aria-label="Account settings">{user?.name?.charAt(0)?.toUpperCase() || "U"}</button>}
+    <button className="bottom-nav-profile" onClick={() => navigate("/settings")} aria-label="Account settings">{user?.name?.charAt(0)?.toUpperCase() || "U"}</button>
   </nav>;
 }
