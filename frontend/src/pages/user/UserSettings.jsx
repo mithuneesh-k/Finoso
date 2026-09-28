@@ -21,7 +21,7 @@ const Section = ({ title, subtitle, children, accent }) => (
 );
 
 export default function UserSettings() {
-  const { user, balance, updateProfile, resetPortfolio, showNotification } = useAuth();
+  const { user, balance, updateProfile, resetPortfolio, showNotification, logout } = useAuth();
 
   // Profile form
   const [name,     setName]     = useState(user?.name  || "");
@@ -306,8 +306,21 @@ export default function UserSettings() {
             </div>
           </Section>
 
+        
+          {/* ── ACCOUNT ACTIONS ── */}
+          <div style={{ marginTop: 30, display: "flex", justifyContent: "center", marginBottom: 60 }}>
+            <button 
+              className="btn btn-outline" 
+              style={{ padding: "10px 24px", color: "var(--text-muted)", borderColor: "var(--border)" }}
+              onClick={() => logout()}
+            >
+              Sign Out
+            </button>
+          </div>
+
         </div>
       </div>
     </AppLayout>
   );
 }
+
