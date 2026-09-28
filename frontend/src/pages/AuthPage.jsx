@@ -47,7 +47,7 @@ export default function AuthPage() {
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ display: "flex", justifyContent: "center" }}><LogoMark size={44} wordmark className="auth-brand" /></div>
           <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.7rem", color: "var(--text-muted)", marginTop: 6 }}>
-            NSE Paper Trading Simulator
+            Advanced Trading Workspace
           </div>
         </div>
 
@@ -105,9 +105,11 @@ export default function AuthPage() {
         </div>
 
         <div style={{ textAlign: "center", marginTop: 20, fontFamily: "var(--font-mono)", fontSize: "0.65rem", color: "var(--text-dim)" }}>
-          Starting balance: ₹10,00,000 virtual cash · No real money involved
+          Secure, fast, and robust platform for market professionals.
         </div>
       </div>
     </div>
   );
 }
+
+

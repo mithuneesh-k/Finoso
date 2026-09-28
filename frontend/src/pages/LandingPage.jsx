@@ -30,18 +30,18 @@ const FEATURES = [
   },
   {
     icon: "⬢",
-    title: "Paper Trading",
-    desc: "Trade risk-free with virtual capital. Practise buy and sell decisions and build confidence at your own pace.",
+    title: "Advanced Trading",
+    desc: "Execute trades seamlessly and build your strategies with confidence at your own pace.",
     accent: "--accent-orange",
   },
 ];
 
 /* ─── How it works ─── */
 const STEPS = [
-  { num: "01", title: "Create Your Account",  desc: "Sign up free. Get ₹10,00,000 virtual capital instantly. No real money needed." },
+  { num: "01", title: "Create Your Account",  desc: "Sign up and fund your account instantly to start your journey." },
   { num: "02", title: "Explore the Market",   desc: "Browse NSE/BSE stocks, read charts, and organise instruments into watchlists." },
-  { num: "03", title: "Place Paper Trades",   desc: "Buy and sell with virtual money. Track P&L, positions, and order history." },
-  { num: "04", title: "Backtest Strategies",  desc: "Test your ideas on historical data. Find what works before risking a rupee." },
+  { num: "03", title: "Place Paper Trades",   desc: "Buy and sell assets with precision. Track P&L, positions, and order history." },
+  { num: "04", title: "Backtest Strategies",  desc: "Test your ideas on historical data. Find what works before executing." },
 ];
 
 /* ─── Main component ─── */
@@ -90,7 +90,7 @@ export default function LandingPage() {
         <div className="lp-hero-content">
           <div className="lp-hero-badge">
             <span className="lp-badge-dot" />
-            Paper Trading Platform · Risk-Free Learning
+            Advanced Trading Platform · Risk-Free Learning
           </div>
           <h1 className="lp-hero-title">
             Trade Smarter.<br />
@@ -98,13 +98,11 @@ export default function LandingPage() {
             Better Decisions.
           </h1>
           <p className="lp-hero-sub">
-            Finoso gives you a focused market workspace, ₹10 lakh virtual capital,
-            portfolio tracking, and strategy backtesting — everything you need to become
-            a disciplined trader before putting money on the line.
+            Finoso gives you a focused market workspace, powerful portfolio tracking, and strategy backtesting — everything you need to execute trades with discipline and precision.
           </p>
           <div className="lp-hero-actions">
             <button className="lp-btn-primary lp-btn-lg" onClick={() => navigate("/login")}>
-              Start Paper Trading — Free
+              Start Advanced Trading — Free
             </button>
             <button className="lp-btn-ghost lp-btn-lg" onClick={() => {
               document.getElementById("features")?.scrollIntoView({ behavior: "smooth" });
@@ -121,7 +119,7 @@ export default function LandingPage() {
         <div className="lp-section-inner">
           <div className="lp-section-label">What you get</div>
           <h2 className="lp-section-title">Everything a serious trader needs</h2>
-          <p className="lp-section-sub">One platform to learn, practise, and backtest without risking a single rupee.</p>
+          <p className="lp-section-sub">One platform to learn, practise, and backtest in a highly intuitive environment.</p>
 
           <div className="lp-features-grid">
             {FEATURES.map((f) => (
@@ -161,7 +159,7 @@ export default function LandingPage() {
         <div className="lp-cta-orb" />
         <div className="lp-cta-inner">
           <h2 className="lp-cta-title">Your trading journey starts here.</h2>
-          <p className="lp-cta-sub">No credit card. No deposits. Just focused trading practice.</p>
+          <p className="lp-cta-sub">Fast execution. Robust tracking. Just focused trading.</p>
           <button className="lp-btn-primary lp-btn-xl" onClick={() => navigate("/login")}>
             Create Free Account →
           </button>
@@ -173,7 +171,7 @@ export default function LandingPage() {
         <div className="lp-footer-inner">
           <div className="lp-logo"><LogoMark size={29} wordmark /></div>
           <div className="lp-footer-note">
-            Paper trading only. No real financial transactions. For educational purposes.
+            Advanced Trading only. No real financial transactions. For educational purposes.
           </div>
           <button className="lp-btn-ghost lp-footer-login" onClick={() => navigate("/login")}>
             Log In →
@@ -183,3 +181,4 @@ export default function LandingPage() {
     </div>
   );
 }
+
