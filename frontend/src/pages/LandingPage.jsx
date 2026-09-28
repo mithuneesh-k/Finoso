@@ -1,35 +1,35 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import LogoMark from "../components/LogoMark.jsx";
 
 /* ─── Features ─── */
 const FEATURES = [
   {
-    icon: "◉",
+    code: "01",
     title: "Market Workspace",
     desc: "Explore NSE/BSE instruments with candlestick charts, price movements, and configurable alerts in one focused workspace.",
     accent: "--accent-cyan",
   },
   {
-    icon: "◈",
+    code: "02",
     title: "Smart Watchlist",
     desc: "Track unlimited stocks, set custom alerts for breakouts, and monitor price movements across all your favourites.",
     accent: "--accent-green",
   },
   {
-    icon: "PF",
+    code: "03",
     title: "Portfolio Tracker",
     desc: "Your complete P&L dashboard — positions, unrealised gains, realised profit and daily net worth movement.",
     accent: "--accent-gold",
   },
   {
-    icon: "⟳",
+    code: "04",
     title: "Strategy Backtesting",
     desc: "Run SMA Crossover, RSI, MACD, Bollinger Bands and more against years of historical data in seconds.",
     accent: "--accent-purple",
   },
   {
-    icon: "⬢",
+    code: "05",
     title: "Advanced Trading",
     desc: "Execute trades seamlessly and build your strategies with confidence at your own pace.",
     accent: "--accent-orange",
@@ -47,21 +47,6 @@ const STEPS = [
 /* ─── Main component ─── */
 export default function LandingPage() {
   const navigate = useNavigate();
-  const heroRef = useRef(null);
-
-  /* parallax dots */
-  useEffect(() => {
-    const handler = (e) => {
-      const el = heroRef.current;
-      if (!el) return;
-      const x = (e.clientX / window.innerWidth - 0.5) * 20;
-      const y = (e.clientY / window.innerHeight - 0.5) * 20;
-      el.style.setProperty("--px", `${x}px`);
-      el.style.setProperty("--py", `${y}px`);
-    };
-    window.addEventListener("mousemove", handler);
-    return () => window.removeEventListener("mousemove", handler);
-  }, []);
 
   return (
     <div className="lp-root">
@@ -81,36 +66,44 @@ export default function LandingPage() {
       </header>
 
       {/* ── Hero ── */}
-      <section className="lp-hero" ref={heroRef}>
-        <div className="lp-hero-bg-grid" />
-        <div className="lp-hero-orb lp-orb-1" />
-        <div className="lp-hero-orb lp-orb-2" />
-        <div className="lp-hero-orb lp-orb-3" />
-
+      <section className="lp-hero">
         <div className="lp-hero-content">
-          <div className="lp-hero-badge">
-            <span className="lp-badge-dot" />
-            Advanced Trading Platform · Risk-Free Learning
-          </div>
+          <div className="lp-hero-kicker">Paper trading for Indian markets</div>
           <h1 className="lp-hero-title">
-            Trade Smarter.<br />
-            <span className="lp-gradient-text">Zero Risk.</span><br />
-            Better Decisions.
+            A clearer way to<br />practise trading.
           </h1>
           <p className="lp-hero-sub">
-            Finoso gives you a focused market workspace, powerful portfolio tracking, and strategy backtesting — everything you need to execute trades with discipline and precision.
+            Follow NSE instruments, test an idea, and understand every position without putting real capital at risk.
           </p>
           <div className="lp-hero-actions">
             <button className="lp-btn-primary lp-btn-lg" onClick={() => navigate("/login")}>
-              Start Advanced Trading — Free
+              Open your workspace
             </button>
             <button className="lp-btn-ghost lp-btn-lg" onClick={() => {
               document.getElementById("features")?.scrollIntoView({ behavior: "smooth" });
             }}>
-              See Features ↓
+              Explore the product
             </button>
           </div>
-
+        </div>
+        <div className="lp-product-frame" aria-label="Finoso product preview">
+          <div className="lp-product-toolbar"><span>Workspace / Overview</span><span className="lp-market-state">Market closed</span></div>
+          <div className="lp-product-summary">
+            <div><small>Portfolio value</small><strong>₹12,47,832</strong><span className="pos">+2.48% this month</span></div>
+            <div><small>Available cash</small><strong>₹4,18,250</strong><span>3 open positions</span></div>
+          </div>
+          <div className="lp-product-chart">
+            <div className="lp-chart-header"><span>Portfolio performance</span><small>30 days</small></div>
+            <svg viewBox="0 0 620 190" role="img" aria-label="Example portfolio chart">
+              <path className="lp-chart-grid" d="M0 35H620M0 85H620M0 135H620" />
+              <path className="lp-chart-line" d="M0 145 C55 138 64 107 112 116 S180 132 220 94 S286 88 330 101 S400 76 438 82 S502 43 548 55 S590 29 620 34" />
+            </svg>
+          </div>
+          <div className="lp-product-rows">
+            <span>RELIANCE <b>₹2,847.35</b><i className="pos">+1.50%</i></span>
+            <span>TCS <b>₹3,921.50</b><i className="neg">−0.73%</i></span>
+            <span>HDFCBANK <b>₹1,678.90</b><i className="pos">+1.42%</i></span>
+          </div>
         </div>
       </section>
 
@@ -124,7 +117,7 @@ export default function LandingPage() {
           <div className="lp-features-grid">
             {FEATURES.map((f) => (
               <div key={f.title} className="lp-feature-card">
-                <div className="lp-feature-icon" style={{ color: `var(${f.accent})`, textShadow: `0 0 16px var(${f.accent})` }}>{f.icon}</div>
+                <div className="lp-feature-code">{f.code}</div>
                 <div className="lp-feature-title">{f.title}</div>
                 <div className="lp-feature-desc">{f.desc}</div>
               </div>
