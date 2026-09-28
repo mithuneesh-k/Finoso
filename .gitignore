@@ -17,3 +17,4 @@ Thumbs.db
 *.log
 npm-debug.log*
 commit_history.txt
+commit_files.ps1
