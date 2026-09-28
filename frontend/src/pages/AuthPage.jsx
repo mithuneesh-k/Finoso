@@ -105,11 +105,12 @@ export default function AuthPage() {
         </div>
 
         <div style={{ textAlign: "center", marginTop: 20, fontFamily: "var(--font-mono)", fontSize: "0.65rem", color: "var(--text-dim)" }}>
-          Secure, fast, and robust platform for market professionals.
+          Secure, fast, and robust platform for market professionals. *No real money involved*
         </div>
       </div>
     </div>
   );
 }
+
 
 

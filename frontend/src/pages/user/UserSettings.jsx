@@ -174,7 +174,7 @@ export default function UserSettings() {
           </Section>
 
           {/* ── BALANCE & FUNDS ── */}
-          <Section title="Virtual Funds" subtitle="Manage your paper trading balance">
+          <Section title="Account Balance" subtitle="Manage your account balance">
             {/* Current balance display */}
             <div style={{
               background: "var(--bg-elevated)", border: "1px solid var(--border)",
@@ -323,4 +323,5 @@ export default function UserSettings() {
     </AppLayout>
   );
 }
+
 

@@ -40,7 +40,7 @@ const FEATURES = [
 const STEPS = [
   { num: "01", title: "Create Your Account",  desc: "Sign up and fund your account instantly to start your journey." },
   { num: "02", title: "Explore the Market",   desc: "Browse NSE/BSE stocks, read charts, and organise instruments into watchlists." },
-  { num: "03", title: "Place Paper Trades",   desc: "Buy and sell assets with precision. Track P&L, positions, and order history." },
+  { num: "03", title: "Execute Trades",   desc: "Buy and sell assets with precision. Track P&L, positions, and order history." },
   { num: "04", title: "Backtest Strategies",  desc: "Test your ideas on historical data. Find what works before executing." },
 ];
 
@@ -171,7 +171,7 @@ export default function LandingPage() {
         <div className="lp-footer-inner">
           <div className="lp-logo"><LogoMark size={29} wordmark /></div>
           <div className="lp-footer-note">
-            Advanced Trading only. No real financial transactions. For educational purposes.
+            Platform strictly for demonstration. No real money involved.
           </div>
           <button className="lp-btn-ghost lp-footer-login" onClick={() => navigate("/login")}>
             Log In →
@@ -181,4 +181,5 @@ export default function LandingPage() {
     </div>
   );
 }
+
 
