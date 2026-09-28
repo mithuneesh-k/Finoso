@@ -70,7 +70,7 @@ async function startServer() {
       console.log(`🚀 Finoso backend running at http://localhost:${PORT}`);
     });
   } catch (error) {
-    console.error("❌ SQLite database connection failed:", error.message);
+    console.error("❌ SQLite database connection failed:", error);
     process.exit(1);
   }
 }
