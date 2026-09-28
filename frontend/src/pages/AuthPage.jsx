@@ -102,15 +102,6 @@ export default function AuthPage() {
             </button>
           </form>
 
-          {mode === "login" && (
-            <div style={{ marginTop: 20, padding: "14px", background: "var(--bg-elevated)", borderRadius: "var(--radius-md)", border: "1px solid var(--border)" }}>
-              <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.65rem", color: "var(--text-muted)", marginBottom: 8 }}>Demo credentials</div>
-              <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.68rem", color: "var(--text-secondary)", lineHeight: 1.8 }}>
-                <div>User: <span style={{ color: "var(--accent-cyan)" }}>demo@finoso.mit</span> / <span style={{ color: "var(--accent-cyan)" }}>password123</span></div>
-                <div>Admin: <span style={{ color: "var(--accent-gold)" }}>admin@finoso.mit</span> / <span style={{ color: "var(--accent-gold)" }}>admin123</span></div>
-              </div>
-            </div>
-          )}
         </div>
 
         <div style={{ textAlign: "center", marginTop: 20, fontFamily: "var(--font-mono)", fontSize: "0.65rem", color: "var(--text-dim)" }}>
