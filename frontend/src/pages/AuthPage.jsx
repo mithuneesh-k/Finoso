@@ -38,6 +38,10 @@ export default function AuthPage() {
       display: "flex", alignItems: "center", justifyContent: "center",
       padding: "20px",
     }}>
+      {/* Glow blobs */}
+      <div style={{ position: "fixed", top: "20%", left: "15%", width: 300, height: 300, background: "rgba(0,212,255,0.06)", borderRadius: "50%", filter: "blur(80px)", pointerEvents: "none" }} />
+      <div style={{ position: "fixed", bottom: "20%", right: "15%", width: 300, height: 300, background: "rgba(0,255,136,0.05)", borderRadius: "50%", filter: "blur(80px)", pointerEvents: "none" }} />
+
       <div style={{ width: "100%", maxWidth: 420 }}>
         {/* Logo */}
         <div style={{ textAlign: "center", marginBottom: 32 }}>

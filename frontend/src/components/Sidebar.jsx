@@ -36,18 +36,12 @@ export default function Sidebar() {
   const navigate = useNavigate();
   const location = useLocation();
   const items = user?.role === "admin" ? adminItems : userItems;
-  return <aside className="app-sidebar">
-    <div className="app-sidebar-brand"><LogoMark size={30} wordmark /></div>
-    <div className="app-sidebar-label">Workspace</div>
-    <nav className="bottom-nav" aria-label="Primary navigation">
-      <div className="bottom-nav-items">{items.map(([icon, label, path]) => {
+  return <nav className="bottom-nav" aria-label="Primary navigation">
+    <div className="bottom-nav-brand"><LogoMark size={27} /></div>
+    <div className="bottom-nav-items">{items.map(([icon, label, path]) => {
       const active = location.pathname === path;
       return <button key={path} className={`bottom-nav-item${active ? " active" : ""}`} onClick={() => navigate(path)} aria-label={label} aria-current={active ? "page" : undefined}><Icon name={icon}/><span>{label}</span></button>;
-      })}</div>
-    </nav>
-    <button className="app-sidebar-account" onClick={() => navigate("/settings")} aria-label="Account settings">
-      <span className="bottom-nav-profile">{user?.name?.charAt(0)?.toUpperCase() || "U"}</span>
-      <span className="app-sidebar-user"><strong>{user?.name || "Account"}</strong><small>{user?.role === "admin" ? "Administrator" : "Paper trading"}</small></span>
-    </button>
-  </aside>;
+    })}</div>
+    <button className="bottom-nav-profile" onClick={() => navigate("/settings")} aria-label="Account settings">{user?.name?.charAt(0)?.toUpperCase() || "U"}</button>
+  </nav>;
 }

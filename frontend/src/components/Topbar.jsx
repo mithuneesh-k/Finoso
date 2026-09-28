@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext.jsx";
+import { getMockStocks } from "../data/mockStocks.js";
 import LogoMark from "./LogoMark.jsx";
 
 export default function Topbar({ title }) {
   const { user, balance, notification } = useAuth();
   const [time,        setTime]        = useState(new Date());
   const [marketOpen,  setMarketOpen]  = useState(false);
+  const [tickerItems, setTickerItems] = useState([]);
 
   useEffect(() => {
     const t = setInterval(() => {
@@ -22,20 +24,56 @@ export default function Topbar({ title }) {
     return () => clearInterval(t);
   }, []);
 
+  useEffect(() => {
+    if (!user) return;
+    const loadTicker = async () => {
+      try {
+        const stocks = getMockStocks();
+        const idxItems = [];
+        const stkItems = stocks.slice(0, 8).map((s) => ({ symbol: s.symbol, price: s.price, changePercent: s.changePercent }));
+        setTickerItems([...idxItems, ...stkItems]);
+      } catch {}
+    };
+    loadTicker();
+    const iv = setInterval(loadTicker, 5000);
+    return () => clearInterval(iv);
+  }, [user]);
+
   const fmt = (n) => Number(n).toLocaleString("en-IN", { maximumFractionDigits: 2 });
+  const items = tickerItems.length ? tickerItems : [
+    { symbol:"NIFTY 50",   price:22456.80, changePercent:0.55 },
+    { symbol:"SENSEX",     price:73876.00, changePercent:0.56 },
+    { symbol:"RELIANCE",   price:2847.35,  changePercent:1.50 },
+    { symbol:"TCS",        price:3921.50,  changePercent:-0.73 },
+    { symbol:"HDFCBANK",   price:1678.90,  changePercent:1.42 },
+  ];
 
   return (
     <>
+      <div className="ticker-tape">
+        <div className="ticker-inner">
+          {[...items, ...items].map((item, i) => (
+            <span key={i} className="ticker-item">
+              <span className="ticker-symbol">{item.symbol}</span>
+              <span className="ticker-price">₹{fmt(item.price || 0)}</span>
+              <span className={(item.changePercent ?? 0) >= 0 ? "pos" : "neg"}>
+                {(item.changePercent ?? 0) >= 0 ? "▲" : "▼"}{Math.abs(item.changePercent ?? 0).toFixed(2)}%
+              </span>
+            </span>
+          ))}
+        </div>
+      </div>
+
       <div className="topbar">
         <div className="topbar-left">
-          <span className="topbar-mobile-mark"><LogoMark size={27} /></span>
+          <LogoMark size={28} />
           <h2 className="topbar-title">{title}</h2>
         </div>
         <div className="topbar-right">
           <div className="market-status-pill">
             <span className="live-dot" style={{ background: marketOpen ? "var(--accent-green)" : "var(--accent-red)" }}/>
             <span style={{ fontFamily:"var(--font-mono)",fontSize:"0.68rem",color:"var(--text-secondary)" }}>
-              NSE · {marketOpen ? "OPEN" : "CLOSED"}
+              NSE {marketOpen ? "OPEN" : "CLOSED"}
             </span>
           </div>
           <div className="topbar-time">
