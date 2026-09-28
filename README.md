@@ -168,13 +168,7 @@ All endpoints except sign-in, registration, and health checks require a Bearer t
 - Backtests run against generated historical series in the frontend. Results are educational illustrations, not investment evidence.
 - Tokens are stored in browser `localStorage` under `finoso_token`.
 
-## Current limitations
 
-- There is no automated test suite yet.
-- SQLite writes to a local file, so deployments require a persistent disk if account history must survive restarts.
-- The frontend production bundle currently produces a Vite chunk-size warning and would benefit from route-level code splitting.
-- Several older MongoDB/PostgreSQL files remain in the repository but are not part of the active runtime.
-- This application is for education and demonstration only, not financial advice or brokerage use.
  
  
  
