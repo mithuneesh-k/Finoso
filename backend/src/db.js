@@ -10,18 +10,24 @@ export const db = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
 
+function formatSql(sql) {
+  if (typeof sql !== "string" || !sql.includes("?")) return sql;
+  let i = 1;
+  return sql.replace(/\?/g, () => `$${i++}`);
+}
+
 export async function query(sql, params = []) {
-  const result = await db.query(sql, params);
+  const result = await db.query(formatSql(sql), params);
   return result;
 }
 
 export async function queryAll(sql, params = []) {
-  const result = await db.query(sql, params);
+  const result = await db.query(formatSql(sql), params);
   return result.rows;
 }
 
 export async function queryOne(sql, params = []) {
-  const result = await db.query(sql, params);
+  const result = await db.query(formatSql(sql), params);
   return result.rows[0];
 }
 

@@ -65,12 +65,12 @@ async function startServer() {
   try {
     await initDatabase();
     await testDatabaseConnection();
-    console.log("✅ SQLite database connection successful");
+    console.log("✅ PostgreSQL database connection successful");
     app.listen(PORT, () => {
       console.log(`🚀 Finoso backend running at http://localhost:${PORT}`);
     });
   } catch (error) {
-    console.error("❌ SQLite database connection failed:", error);
+    console.error("❌ PostgreSQL database connection failed:", error);
     process.exit(1);
   }
 }

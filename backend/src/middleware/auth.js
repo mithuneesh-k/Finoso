@@ -16,7 +16,7 @@ export const protect = async (req, res, next) => {
        FROM users u
        LEFT JOIN investor_profiles ip ON ip.user_id = u.id
        LEFT JOIN wallets w ON w.user_id = u.id
-       WHERE u.id = ?`,
+       WHERE u.id = $1`,
       [decoded.id]
     );
 

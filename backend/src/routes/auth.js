@@ -7,16 +7,12 @@ const router = express.Router();
 
 const WATCHLIST_SELECT = `
   COALESCE((
-    SELECT GROUP_CONCAT(symbol)
-    FROM (
-      SELECT c.symbol
-      FROM watchlist_items wi
-      JOIN watchlists wl ON wl.id = wi.watchlist_id
-      JOIN stocks s ON s.id = wi.stock_id
-      JOIN companies c ON c.id = s.company_id
-      WHERE wl.user_id = u.id
-      ORDER BY c.symbol
-    )
+    SELECT STRING_AGG(c.symbol, ',')
+    FROM watchlist_items wi
+    JOIN watchlists wl ON wl.id = wi.watchlist_id
+    JOIN stocks s ON s.id = wi.stock_id
+    JOIN companies c ON c.id = s.company_id
+    WHERE wl.user_id = u.id
   ), '') AS watchlist
 `;
 

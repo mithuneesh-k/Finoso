@@ -11,7 +11,7 @@ router.get("/stats", async (req, res) => {
     const activeUsers = await query(`SELECT COUNT(*) AS count FROM users WHERE LOWER(role) = 'investor' AND LOWER(status) = 'active'`);
     const totalTrades = await query(`SELECT COUNT(*) AS count FROM trades`);
     const totalVolume = await query(`SELECT COALESCE(SUM(total_amount),0) AS total FROM trades`);
-    const newThisMonth = await query(`SELECT COUNT(*) AS count FROM users WHERE LOWER(role) = 'investor' AND created_at >= datetime('now', 'start of month')`);
+    const newThisMonth = await query(`SELECT COUNT(*) AS count FROM users WHERE LOWER(role) = 'investor' AND created_at >= DATE_TRUNC('month', CURRENT_DATE)`);
 
     res.json({
       totalUsers: Number(totalUsers.rows[0].count),
@@ -41,7 +41,7 @@ router.get("/users", async (req, res) => {
        FROM users u
        LEFT JOIN investor_profiles ip ON ip.user_id = u.id
        LEFT JOIN wallets w ON w.user_id = u.id
-       ORDER BY u.created_at DESC`
+       ORDER BY LOWER(COALESCE(ip.full_name, u.email)) ASC`
     );
     res.json(rows);
   } catch (error) {
@@ -52,7 +52,7 @@ router.get("/users", async (req, res) => {
 router.patch("/users/:id/status", async (req, res) => {
   try {
     const { rows } = await query(
-      `UPDATE users SET status = ? WHERE id = ? RETURNING id, email, role, status`,
+      `UPDATE users SET status = $1 WHERE id = $2 RETURNING id, email, role, status`,
       [String(req.body.status || "ACTIVE").toUpperCase(), req.params.id]
     );
     res.json(rows[0]);
