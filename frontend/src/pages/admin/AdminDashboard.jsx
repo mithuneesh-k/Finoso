@@ -63,7 +63,15 @@ export default function AdminDashboard() {
       .finally(() => setLoading(false));
   }, []);
 
-  const recentUsers = (users || []).filter((u) => u.role !== "admin").slice(0, 5);
+  const recentUsers = [...(users || [])]
+    .filter((u) => (u.role || "").toLowerCase() !== "admin")
+    .sort((a, b) =>
+      String(a.name || a.email || "").localeCompare(String(b.name || b.email || ""), undefined, {
+        numeric: true,
+        sensitivity: "base",
+      })
+    )
+    .slice(0, 5);
   const recentTrades = (trades || []).slice(0, 6);
 
   return (
@@ -139,7 +147,7 @@ export default function AdminDashboard() {
                       <td style={{ fontFamily: "var(--font-mono)", fontSize: "0.75rem", color: "var(--text-primary)" }}>{u.name || "Unknown"}</td>
                       <td style={{ fontFamily: "var(--font-mono)", fontSize: "0.68rem", color: "var(--text-muted)" }}>{u.email || "—"}</td>
                       <td style={{ fontFamily: "var(--font-mono)" }}>{u.trades ?? 0}</td>
-                      <td><span className={`badge ${u.status === "active" ? "badge-green" : "badge-red"}`}>{(u.status || "active").toLowerCase()}</span></td>
+                      <td><span className={`badge ${(u.status || "").toLowerCase() === "active" ? "badge-green" : "badge-red"}`}>{(u.status || "active").toLowerCase()}</span></td>
                     </tr>
                   ))}
                 </tbody>
